@@ -1,6 +1,9 @@
 package org.example;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,15 +22,16 @@ class MyArrayListTest {
         assertEquals(startSize+15, endSize);
     }
 
-    @Test
-    void addElementParam() {
+    @ParameterizedTest
+    @CsvSource({"5, 0"})
+    void addElement(int index, Integer item) {
         MyArrayList<Integer> myArrayList = new MyArrayList<>();
         int i = 0;
         while (i < 15){
             myArrayList.addElement(i);
             i++;
         }
-        myArrayList.setElement(5,0);
+        myArrayList.addElement(index, item);
         assertEquals(0, myArrayList.getElement(5));
     }
 
